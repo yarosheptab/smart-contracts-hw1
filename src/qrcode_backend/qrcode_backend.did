@@ -1,19 +1,38 @@
+type HeaderField = record { text; text; };
+type HttpResponse = record {
+    status: nat16;
+    headers: vec HeaderField;
+    body: blob;
+};
+type TransformArgs = record {
+    response: HttpResponse;
+    context: vec nat8;
+};
+
 type Options = record {
-  add_logo: bool;
-  add_gradient: bool;
-  add_transparency: opt bool;
+    add_logo: bool;
+    add_gradient: bool;
+    add_transparency: opt bool;
+    animation: opt record {
+        frames: nat8;
+        colors: vec text;
+    };
 };
 
 type QrError = record {
-  message: text;
+    message: text;
 };
 
 type QrResult = variant {
-  Image: blob;
-  Err: QrError;
-}
+    Image: blob;
+    Images: vec blob;
+    Err: QrError;
+};
 
 service : {
     "qrcode_query": (input: text, options: Options) -> (QrResult) query;
     "qrcode": (input: text, options: Options) -> (QrResult);
+    "http_request": (response: HttpResponse) -> (HttpResponse) query;
+    "http_request_update": (response: HttpResponse) -> (HttpResponse);
+    "transform": (args: TransformArgs) -> (HttpResponse) query;
 }

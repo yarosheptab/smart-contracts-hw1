@@ -3,63 +3,74 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>QR code generator</title>
-  <base href="/" />
-  <link rel="icon" href="favicon.ico" />
-  <link type="text/css" rel="stylesheet" href="main.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Code Generator</title>
 </head>
 
 <body>
-  <form>
-    <div>
-      <h1>QR code generator</h1>
-      <textarea id="text" cols=60 rows=4 placeholder="Enter text"></textarea>
-      <div class="option">
-        <label>
-          <div class="toggle-switch">
-            <input type="checkbox" id="logo" checked>
-            <span class="slider"></span>
+  <div class="container">
+    <h1>QR Code Generator</h1>
+    <form id="form">
+      <div class="form-group">
+        <label for="text">Enter text or URL to encode:</label>
+        <input type="text" id="text" required placeholder="https://example.com">
+      </div>
+
+      <div class="form-group">
+        <div class="checkbox-group">
+          <input type="checkbox" id="logo">
+          <label for="logo">Add logo</label>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="gradient">
+          <label for="gradient">Add gradient</label>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="transparent">
+          <label for="transparent">Make background transparent</label>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="animated">
+          <label for="animated">Create animated QR code</label>
+        </div>
+      </div>
+
+      <div id="animation-controls" class="animation-controls">
+        <div class="form-group">
+          <label for="frames">Number of frames:</label>
+          <input type="number" id="frames" min="2" max="10" value="5">
+        </div>
+        <div class="form-group">
+          <label>Colors:</label>
+          <div id="colors" class="color-inputs">
+            <input type="color" value="#4A90E2">
+            <input type="color" value="#28A745">
+            <input type="color" value="#9B59B6">
           </div>
-          &nbsp; add logo
-        </label>
+          <button type="button" id="add-color">Add Color</button>
+        </div>
       </div>
-      <div class="option">
-        <label>
-          <div class="toggle-switch">
-            <input type="checkbox" id="gradient" checked>
-            <span class="slider"></span>
-          </div>
-          &nbsp; add gradient
-        </label>
+
+      <div class="form-group">
+        <div class="checkbox-group">
+          <input type="checkbox" id="consensus">
+          <label for="consensus">Use consensus (update)</label>
+        </div>
       </div>
-      <div class="option">
-        <label>
-          <div class="toggle-switch">
-            <input type="checkbox" id="transparent">
-            <span class="slider"></span>
-          </div>
-          &nbsp; make transparent
-        </label>
-      </div>
-      <div class="option">
-        <label>
-          <div class="toggle-switch">
-            <input type="checkbox" id="consensus">
-            <span class="slider"></span>
-          </div>
-          &nbsp; wait for blockchain consensus
-        </label>
-      </div>
-      <button class="clean-button" id="generate">Generate!</button>
-      <div>
-        <div id="message"></div>
-        <a id="download" download="qrcode.png">
-          <img id="qrcode" class="qrcode"></img>
-        </a>
-      </div>
+
+      <button type="submit" id="generate">Generate QR Code</button>
+    </form>
+
+    <div class="result-container">
+      <div id="message"></div>
+      <img id="qrcode" alt="QR Code">
+      <a id="download" download="qrcode.png">Download QR Code</a>
     </div>
-  </form>
+  </div>
+  <script type="module" src="index.js"></script>
 </body>
 
 </html>

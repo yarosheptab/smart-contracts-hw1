@@ -1,0 +1,24 @@
+[
+    {
+        match: "**/*.css",
+        headers: {
+            "Content-Type": "text/css",
+            "Content-Security-Policy": "style-src 'self' 'unsafe-inline' http://localhost:4943 https://localhost:4943 https://*.icp0.io https://icp0.io",
+            "X-Content-Type-Options": "nosniff",
+        },
+        allow_raw_access: false,
+        security_policy: "standard",
+    },
+    {
+        match: "**/*",
+        headers: {
+            "Content-Security-Policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' http://localhost:4943 https://localhost:4943 https://*.icp0.io https://icp0.io; connect-src 'self' http://localhost:4943 https://localhost:4943 http://127.0.0.1:4943 https://127.0.0.1:4943 https://icp0.io/api/v2/canister/hv7pu-paaaa-aaaag-at76a-cai/* https://icp0.io/api/v2/status/* https://icp0.io/api/v2/subnet/*; img-src 'self' data: blob: https://*.icp0.io https://icp0.io; style-src 'self' 'unsafe-inline' http://localhost:4943 https://localhost:4943 https://*.icp0.io https://icp0.io; script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+            "X-Frame-Options": "DENY",
+            "X-Content-Type-Options": "nosniff",
+            "Referrer-Policy": "same-origin",
+            "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+        },
+        allow_raw_access: false,
+        security_policy: "standard",
+    },
+]
